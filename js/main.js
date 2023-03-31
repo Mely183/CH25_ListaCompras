@@ -114,9 +114,15 @@ let precioTotal = document.getElementById("precioTotal");
          productosTotal.innerText=totalEnProductos;
          costoTotal += precio * parseFloat(txtNumber.value);
          precioTotal.innerText = `$ ${costoTotal.toFixed(2)}`;
-         localStorage.setItem("contadorProductos",contador);
-         localStorage.setItem("totalEnProductos", totalEnProductos);
-         localStorage.setItem("costoTotal",costoTotal);
+         //Creamos un objeto en formato JSON en lugar de
+         //manejar uno por uno con el localStorage.setItem
+        let resume = `{"contadorProductos" : ${contador},
+                       "totalEnProductos" : ${totalEnProductos}
+                       "costoTotal" : ${costoTotal.toFixed(2)} }`;
+        localStorage.setItem("resume", resume);
+        //  localStorage.setItem("contadorProductos",contador);
+        //  localStorage.setItem("totalEnProductos", totalEnProductos);
+        //  localStorage.setItem("costoTotal",costoTotal);
          txtNombre.value = "";
          txtNumber.value = "";
          txtNombre.focus();
@@ -152,3 +158,5 @@ window.addEventListener("load", function(event){
      productosTotal.innerText = totalEnProductos;
      precioTotal.innerText = `$ ${costoTotal}`;
  });
+
+
